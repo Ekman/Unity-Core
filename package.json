@@ -1,0 +1,11 @@
+{
+    "name": "ninja.nekman.core",
+    "version": "0.0.1",
+    "displayName": "Nekman Core Library",
+    "unity": "6000.0",
+    "author": {
+        "name": "Niklas Ekman",
+        "email": "nikl.ekman@gmail.com",
+        "url": "https://braska.me"
+    }
+}
