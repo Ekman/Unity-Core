@@ -1,7 +1,7 @@
 {
     "name": "ninja.nekman.core",
     "version": "0.1.1",
-    "displayName": "Nekman Core Library",
+    "displayName": "Nekman.Core",
     "unity": "6000.0",
     "author": {
         "name": "Niklas Ekman",
