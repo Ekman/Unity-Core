@@ -13,7 +13,6 @@ namespace Nekman.Core.Extensions
         public static Vector2 XY(this Vector3 v) => new(v.x, v.y);
         public static Vector2 XZ(this Vector3 v) => new(v.x, v.z);
         public static Vector2 XX(this Vector3 v) => new(v.x, v.x);
-
         public static Vector2 YX(this Vector3 v) => new(v.y, v.x);
         public static Vector2 YZ(this Vector3 v) => new(v.y, v.z);
         public static Vector2 YY(this Vector3 v) => new(v.y, v.y);
