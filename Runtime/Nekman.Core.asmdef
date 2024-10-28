@@ -1,9 +1,7 @@
 {
-    "name": "NekmanCoreLibrary",
+    "name": "Nekman.Core",
     "rootNamespace": "Nekman.Core",
-    "references": [
-        ""
-    ],
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
