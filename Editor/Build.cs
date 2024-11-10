@@ -41,7 +41,7 @@ namespace Nekman.Core.Editor
                 var productName = PlayerSettings.productName.Replace(" ", string.Empty);
                 var binaryName = $"{productName}.{platform.BinaryExtension}";
 
-                var buildPlayerOptions = new BuildPlayerOptions()
+                var buildPlayerOptions = new BuildPlayerOptions
                 {
                     locationPathName = Path.Combine(buildConfig.OutputPath, platform.Name, binaryName),
                     options = BuildOptions.StrictMode | BuildOptions.CompressWithLz4HC,
@@ -62,7 +62,6 @@ namespace Nekman.Core.Editor
                 }
 
                 Debug.Log($"Build \"{platform.Name}\" successful.");
-
                 return 0;
             }
             finally
