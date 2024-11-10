@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEditor.Build;
 
-namespace Editor.Platforms
+namespace Nekman.Core.Editor.Platforms
 {
     public readonly struct OsxSilicon : IPlatform
     {

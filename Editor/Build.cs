@@ -1,11 +1,11 @@
-using Editor.Platforms;
+using Nekman.Core.Editor.Platforms;
 using System.IO;
 using System.Linq;
 using UnityEditor;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
 
-namespace Editor
+namespace Nekman.Core.Editor
 {
     public static class Build
     {

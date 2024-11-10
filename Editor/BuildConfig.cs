@@ -1,6 +1,6 @@
 using System;
 
-namespace Editor
+namespace Nekman.Core.Editor
 {
     public readonly struct BuildConfig
     {
