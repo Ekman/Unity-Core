@@ -1,8 +1,12 @@
+using System;
 using Nekman.Core.Editor.Platforms;
 using System.IO;
 using System.Linq;
+using System.Threading;
+using Nekman.Core.Editor.Utilities;
 using UnityEditor;
 using UnityEditor.Build.Reporting;
+using UnityEditor.WebGL;
 using UnityEngine;
 
 namespace Nekman.Core.Editor
@@ -16,26 +20,35 @@ namespace Nekman.Core.Editor
         public static int OsxIntel() => BuildPlatform<OsxIntel>();
 
         public static int OsxSilicon() => BuildPlatform<OsxSilicon>();
+        
+        public static int WebGl() => BuildPlatform<WebGl>();
 
         private static int BuildPlatform<T>() where T : IPlatform, new()
         {
             var buildConfig = BuildConfig.CreateThrowIfInvalid();
-
-            // Remember this and set it back to the original . Else, we'll
-            // get updates in Git which can be annoying.
-            var originalBundleVersion = PlayerSettings.bundleVersion;
-
-            try
+            
+            return BuildUtility.SetVersion(buildConfig.Version, () =>
             {
                 var platform = new T();
 
-                PlayerSettings.bundleVersion = buildConfig.Version;
+                if (!EditorUserBuildSettings.SwitchActiveBuildTarget(platform.BuildTargetGroup, platform.BuildTarget))
+                {
+                    throw new BuildException("Could not switch active build target.");
+                }
+                
+                // Switching platform can take a while.
+                Thread.Sleep(TimeSpan.FromSeconds(5));
 
-#if UNITY_EDITOR_WIN
-                UnityEditor.WindowsStandalone.UserBuildSettings.architecture = platform.Architecture;
+#if UNITY_WEBGL
+                Debug.Log("Building WebGL");
+                UnityEditor.WebGL.UserBuildSettings.codeOptimization = WasmCodeOptimization.RuntimeSpeedLTO;
+#elif UNITY_EDITOR_WIN
+                Debug.Log("Building Windows");
+                UnityEditor.WindowsStandalone.UserBuildSettings.architecture = platform.Architecture ?? throw new ArgumentNullException(nameof(platform.Architecture), "Architecture can't be null");
                 UnityEditor.WindowsStandalone.UserBuildSettings.copyPDBFiles = false;
 #elif UNITY_EDITOR_OSX
-                UnityEditor.OSXStandalone.UserBuildSettings.architecture = platform.Architecture;
+                Debug.Log("Building OSX");
+                UnityEditor.OSXStandalone.UserBuildSettings.architecture = platform.Architecture ?? throw new ArgumentNullException(nameof(platform.Architecture), "Architecture can't be null");;
 #endif
 
                 var productName = PlayerSettings.productName.Replace(" ", string.Empty);
@@ -50,7 +63,7 @@ namespace Nekman.Core.Editor
                         .Select(scene => scene.path)
                         .ToArray(),
                     target = platform.BuildTarget,
-                    targetGroup = BuildTargetGroup.Standalone,
+                    targetGroup = platform.BuildTargetGroup,
                 };
 
                 var report = BuildPipeline.BuildPlayer(buildPlayerOptions);
@@ -62,12 +75,8 @@ namespace Nekman.Core.Editor
                 }
 
                 Debug.Log($"Build \"{platform.Name}\" successful.");
-                return 0;
-            }
-            finally
-            {
-                PlayerSettings.bundleVersion = originalBundleVersion;
-            }
+                return 0; 
+            });
         }
     }
 }

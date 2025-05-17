@@ -7,10 +7,12 @@ namespace Nekman.Core.Editor.Platforms
     {
         public string Name => nameof(OsxSilicon);
 
-        public OSArchitecture Architecture => OSArchitecture.ARM64;
+        public OSArchitecture? Architecture => OSArchitecture.ARM64;
 
         public BuildTarget BuildTarget => BuildTarget.StandaloneOSX;
 
         public string BinaryExtension => "app";
+        
+        public BuildTargetGroup BuildTargetGroup => BuildTargetGroup.Standalone;
     }
 }

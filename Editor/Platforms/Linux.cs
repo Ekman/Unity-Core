@@ -7,10 +7,12 @@ namespace Nekman.Core.Editor.Platforms
     {
         public string Name => nameof(Linux);
 
-        public OSArchitecture Architecture => OSArchitecture.x64;
+        public OSArchitecture? Architecture => OSArchitecture.x64;
 
         public BuildTarget BuildTarget => BuildTarget.StandaloneLinux64;
 
         public string BinaryExtension => "x86_64";
+        
+        public BuildTargetGroup BuildTargetGroup => BuildTargetGroup.Standalone;
     }
 }
