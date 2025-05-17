@@ -2,7 +2,9 @@
     "name": "Nekman.Core.Editor",
     "rootNamespace": "Nekman.Core.Editor",
     "references": [],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

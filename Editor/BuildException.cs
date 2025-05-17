@@ -1,6 +1,5 @@
 using System;
 
-
 namespace Nekman.Core.Editor
 {
     public class BuildException : Exception
