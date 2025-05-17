@@ -1,12 +1,13 @@
 ﻿using System;
 using System.IO;
+using System.Threading;
 using UnityEditor;
 
 namespace Nekman.Core.Editor.Utilities
 {
     public static class BuildUtility
     {
-        public static int SetVersion(string version, Func<int> callback)
+        public static void SetVersion(string version, Action callback)
         {
             // Remember this and set it back to the original . Else, we'll
             // get updates in Git which can be annoying.
@@ -16,7 +17,7 @@ namespace Nekman.Core.Editor.Utilities
             {
                 PlayerSettings.bundleVersion = version;
                 
-                return callback();
+                callback();
             }
             finally
             {
