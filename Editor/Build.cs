@@ -52,11 +52,11 @@ namespace Nekman.Core.Editor
 #endif
 
                 var productName = PlayerSettings.productName.Replace(" ", string.Empty);
-                var binaryName = $"{productName}.{platform.BinaryExtension}";
-
+                var binaryName = platform.CreateBinaryFilename(productName);
+                
                 var buildPlayerOptions = new BuildPlayerOptions
                 {
-                    locationPathName = Path.Combine(buildConfig.OutputPath, platform.Name, binaryName),
+                    locationPathName = BuildUtility.CreateBinaryFilenamePath(buildConfig.OutputPath, platform.Name, binaryName),
                     options = BuildOptions.StrictMode | BuildOptions.CompressWithLz4HC,
                     scenes = EditorBuildSettings.scenes
                         .Where(scene => scene.enabled)

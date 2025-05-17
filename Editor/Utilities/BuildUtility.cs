@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using UnityEditor;
 
 namespace Nekman.Core.Editor.Utilities
@@ -21,6 +22,18 @@ namespace Nekman.Core.Editor.Utilities
             {
                 PlayerSettings.bundleVersion = originalBundleVersion;
             }
+        }
+
+        public static string CreateBinaryFilenamePath(string outputPath, string platformName, string binaryName)
+        {
+            var binaryFilenamePath = Path.Combine(outputPath, platformName);
+                
+            if (!string.IsNullOrWhiteSpace(binaryName))
+            {
+                binaryFilenamePath = Path.Combine(binaryFilenamePath, binaryName);
+            }
+
+            return binaryFilenamePath;
         }
     }
 }

@@ -3,16 +3,10 @@ using UnityEditor.Build;
 
 namespace Nekman.Core.Editor.Platforms
 {
-    public readonly struct OsxSilicon : IPlatform
+    public class OsxSilicon : OsxPlatform
     {
-        public string Name => nameof(OsxSilicon);
+        public override string Name => nameof(OsxSilicon);
 
-        public OSArchitecture? Architecture => OSArchitecture.ARM64;
-
-        public BuildTarget BuildTarget => BuildTarget.StandaloneOSX;
-
-        public string BinaryExtension => "app";
-        
-        public BuildTargetGroup BuildTargetGroup => BuildTargetGroup.Standalone;
+        public override OSArchitecture? Architecture => OSArchitecture.ARM64;
     }
 }
