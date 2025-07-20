@@ -43,7 +43,7 @@ echo "Project path = $project_path"
 
 read -r -a split_platforms <<<"$platforms"
 
-echo "Baking occlussion culling data..."
+echo "Running pre-build..."
 time "$unity_path" \
     -executeMethod "Nekman.Core.Editor.PreBuild.Run" \
     -quit \
