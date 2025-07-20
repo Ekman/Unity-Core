@@ -48,7 +48,6 @@ time "$unity_path" \
     -executeMethod "Nekman.Core.Editor.PreBuild.Run" \
     -quit \
     -batchmode \
-    -nographics \
     -silent-crashes \
     -logfile "$output_path/prebuild.log"
 
@@ -78,7 +77,6 @@ for platform in "${split_platforms[@]}"; do
         -executeMethod "Nekman.Core.Editor.Build.$platform" \
         -quit \
         -batchmode \
-        -nographics \
         -silent-crashes \
         -projectPath "$project_path" \
         -logfile "$log_path" \
