@@ -10,6 +10,6 @@ namespace Nekman.Core.Utilities
         /// <param name="attack"></param>
         /// <param name="maxDistance"></param>
         /// <returns></returns>
-        public static Vector3 GetHitPoint(Transform attack, float maxDistance) => attack.position + attack.position.normalized * maxDistance;   
+        public static Vector3 GetHitPoint(Transform attack, float maxDistance) => attack.position + attack.forward.normalized * maxDistance;   
     }
 }
