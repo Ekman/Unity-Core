@@ -7,8 +7,10 @@ using Nekman.Core.Editor.Utilities;
 using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
-using UnityEditor.WebGL;
 using UnityEngine;
+#if UNITY_WEBGL
+using UnityEditor.WebGL;
+#endif
 
 namespace Nekman.Core.Editor
 {
