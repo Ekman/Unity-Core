@@ -1,11 +1,11 @@
 {
-    "name": "ninja.nekman.core",
-    "version": "0.4.0",
+    "name": "solutions.niklasekman.core",
+    "version": "0.5.0",
     "displayName": "Nekman.Core",
     "unity": "6000.0",
     "author": {
         "name": "Niklas Ekman",
         "email": "nikl.ekman@gmail.com",
-        "url": "https://braska.me"
+        "url": "https://www.niklasekman.solutions?utm_source=unity+package"
     }
 }
