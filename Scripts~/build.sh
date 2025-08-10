@@ -41,15 +41,22 @@ echo "Output path = $output_path"
 project_path=$(realpath "$project_path")
 echo "Project path = $project_path"
 
-read -r -a split_platforms <<<"$platforms"
-
-echo "Running pre-build..."
+echo "Baking occlussion culling data..."
+pre_build_log_path="$output_path/prebuild.log"
 time "$unity_path" \
     -executeMethod "Nekman.Core.Editor.PreBuild.Run" \
     -quit \
     -batchmode \
+    -nographics \
     -silent-crashes \
-    -logfile "$output_path/prebuild.log"
+    -logfile "$pre_build_log_path"
+
+if [ $? -ne 0 ]; then
+    >&2 echo "Pre-build failed, see \"$pre_build_log_path\"."
+    exit 1
+fi
+
+read -r -a split_platforms <<<"$platforms"
 
 for platform in "${split_platforms[@]}"; do
     echo "Compiling \"$platform\"..."
@@ -82,6 +89,11 @@ for platform in "${split_platforms[@]}"; do
         -logfile "$log_path" \
         -releaseCodeOptimization \
         -buildTarget "$build_target"
+
+    if [ $? -ne 0 ]; then
+        >&2 echo "Build failed for \"$platform\", check \"$log_path\"."
+        exit 1
+    fi
 
     if [[ "$platform" != "WebGl" ]]; then
         echo "Creating debug symbols zip for $platform..."
