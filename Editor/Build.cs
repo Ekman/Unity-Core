@@ -68,6 +68,7 @@ namespace Nekman.Core.Editor
                 {
                     Debug.LogError($"Build \"{platform.Name}\" failed, see logs.");
                     Application.Quit(-1);
+                    return;
                 }
 
                 Debug.Log($"Build \"{platform.Name}\" successful.");
