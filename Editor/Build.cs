@@ -20,6 +20,8 @@ namespace Nekman.Core.Editor
 
         public static void Linux() => BuildPlatform<Linux>();
 
+        public static void OsxUniversal() => BuildPlatform<OsxUniversal>();
+
         public static void OsxIntel() => BuildPlatform<OsxIntel>();
 
         public static void OsxSilicon() => BuildPlatform<OsxSilicon>();
