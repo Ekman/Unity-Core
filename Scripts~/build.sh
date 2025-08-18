@@ -11,7 +11,7 @@ create_debug_symbols=0
 
 project_name="Its Not the End of the World"
 
-while getopts "u:o:d:v:p:" flag
+while getopts "u:o:d:v:p:s:" flag
 do
     case "$flag" in
         u) unity_path="$OPTARG";;
