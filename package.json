@@ -7,5 +7,8 @@
         "name": "Niklas Ekman",
         "email": "nikl.ekman@gmail.com",
         "url": "https://www.niklasekman.solutions?utm_source=unity+package"
+    },
+    "dependencies": {
+        "com.unity.addressables": "2.7.0"
     }
 }
