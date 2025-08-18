@@ -35,7 +35,7 @@ namespace Nekman.Core.Editor
             {
 #if UNITY_WEBGL
                 Debug.Log("Building WebGL");
-                UnityEditor.WebGL.UserBuildSettings.codeOptimization = WasmCodeOptimization.RuntimeSpeedLTO;
+                UnityEditor.WebGL.UserBuildSettings.codeOptimization = WasmCodeOptimization.BuildTimes;
 #elif UNITY_EDITOR_WIN
                 Debug.Log("Building Windows");
                 UnityEditor.WindowsStandalone.UserBuildSettings.architecture = platform.Architecture
