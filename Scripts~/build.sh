@@ -7,6 +7,7 @@ output_path="./Builds"
 project_path="."
 version=""
 platforms=""
+create_debug_symbols=0
 
 project_name="Its Not the End of the World"
 
@@ -18,6 +19,7 @@ do
         d) project_path="$OPTARG";;
         v) version="$OPTARG";;
         p) platforms="$OPTARG";;
+        s) create_debug_symbols=1;;
     esac
 done
 
@@ -30,6 +32,8 @@ if [[ -z "$platforms" ]]; then
     >&2 echo "You must pass -p (platforms)."
     exit 1
 fi
+
+echo "Create Debug Symbols = $create_debug_symbols"
 
 export VERSION="$version"
 echo "Version = $version"
@@ -95,7 +99,7 @@ for platform in "${split_platforms[@]}"; do
         exit 1
     fi
 
-    if [[ "$platform" != "WebGl" ]]; then
+    if [[ "$create_debug_symbols" -eq 1 ]] && [ "$platform" != "WebGl" ]]; then
         echo "Creating debug symbols zip for $platform..."
         cd "$build_path/${project_name}_BackUpThisFolder_ButDontShipItWithYourGame" \
             && time zip -9qr "$output_path/${project_name}_${platform}_${version}_debug_symbols.zip" .
