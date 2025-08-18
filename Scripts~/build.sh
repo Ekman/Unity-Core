@@ -41,7 +41,7 @@ echo "Output path = $output_path"
 project_path=$(realpath "$project_path")
 echo "Project path = $project_path"
 
-echo "Baking occlussion culling data..."
+echo "Running pre-build..."
 pre_build_log_path="$output_path/prebuild.log"
 time "$unity_path" \
     -executeMethod "Nekman.Core.Editor.PreBuild.Run" \
